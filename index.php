@@ -31,7 +31,7 @@
         </div>
         <div class="card">
             <h2>Iniciar Sesión</h2>
-            <form action="../accion/verificarLogin.php" method="POST">
+            <form action="./VISTA/ACCION/verificarLogin.php" method="POST">
                 <div class="form-group">
                     <label for="usuario_login">Usuario:</label>
                     <input type="text" id="usuario_login" name="usuario" required>
