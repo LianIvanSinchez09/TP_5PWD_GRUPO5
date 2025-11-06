@@ -1,18 +1,22 @@
 <?php
+
+include_once 'conector/BaseDatos.php';
+
 class Usuario {
     private $idUsuario;
     private $usNombre;
     private $usPass;
     private $usMail;
     private $usDeshabilitado;
+    private $usMensajeOperacion;
 
     public function __construct() {
         $this->idUsuario="";
         $this->usNombre="";
         $this->usPass="";
-        $this->Mail="";
+        $this->usMail="";
         $this->usDeshabilitado="";
-        $this->mensajeOperacion="";
+        $this->usMensajeOperacion=null;
     }
 
     public function getIdUsuario() {
@@ -49,17 +53,16 @@ class Usuario {
     public function setUsDeshabilitado($usDeshabilitado) {
         $this->usDeshabilitado = $usDeshabilitado;
     }
-    public function setMensajeOperacion($mensajeOperacion) {
-        $this->usDeshabilitado = $usDeshabilitado;
+
+    public function setMensajeOperacion($usMensajeOperacion) {
+        $this->usMensajeOperacion = $usMensajeOperacion;
     }
 
-    public function setear($idUsuario, $usNombre, $usPass, $usMail, $usDeshabilitado, $mensajeOperacion) {
-        $this->setIdUsuario($idUsuario);
+    public function setear($usNombre, $usPass, $usMail, $usDeshabilitado = "") {
         $this->setUsNombre($usNombre);
         $this->setUsPass($usPass);
-        $this->setUsMail($UsMail);
+        $this->setUsMail($usMail);
         $this->setUsDeshabilitado($usDeshabilitado);
-        $this->setMensajeOperacion($mensajeOperacion);
     }
 
     public function cargar() {
@@ -128,13 +131,12 @@ class Usuario {
             while ($row = $base->Registro()) {
                 $objUsuario = new usuario();
                 $objUsuario->setear(
-                    $row['id_usuario'],
                     $row['usuario_nombre'],
                     $row['usuario_pass'],
                     $row['usuario_email'],
                     $row['usuario_deshabilitado']
                 );
-                array_psuh($arreglo, $objUsuario);
+                array_push($arreglo, $objUsuario);
             }
         }else {
             $this->setMensajeOperacion("Tabla->listar: " . $base->getError());
@@ -145,7 +147,7 @@ class Usuario {
     public function insertar() {
         $res = false;
         $base = new BaseDatos();
-        $sql = "INSERT INTO usuario (usuario_nombre, usuario_password, usuario_email) VALUES (" . $this->getUSuarioNombre() . "," . $this->getUsuarioPassword() . "," . $this->getUsuarioUsuarioEmail() . ")";
+        $sql = "INSERT INTO usuario (usnombre, uspass, usmail, usdeshabilitado) VALUES ('" . $this->getUsNombre() . "','" . $this->getUsPass() . "','" . $this->getUsMail() . "','" . $this->getUsDeshabilitado() . "')";
         if ($base->Iniciar()) {
             if($id = $base->Ejecutar($sql)) {
                 $this->setIdUsuario($id);

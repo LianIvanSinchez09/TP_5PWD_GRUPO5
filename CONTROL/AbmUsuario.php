@@ -1,5 +1,8 @@
 <?php
-// include_once '../../modelo/usuario.php';
+
+include_once(__DIR__ . '/../MODELO/Usuario.php');
+
+
 class AbmUsuario
 {
     /**
@@ -9,14 +12,16 @@ class AbmUsuario
     private function cargarObjeto($parametro)
     {
         $usuario = null;
-        if (array_key_exists('id_usuario', $parametro) && array_key_exists('usuario_nombre', $parametro) && array_key_exists('usuario_password', $parametro) && array_key_exists('usuario_email', $parametro) && array_key_exists('usuario_deshabilitado', $parametro)) {
+
+        $checkPropiedadesUsuario = array_key_exists('usnombre', $parametro) && array_key_exists('uspassword', $parametro) && array_key_exists('usmail', $parametro) && array_key_exists('usuario_deshabilitado', $parametro);
+
+        if ($checkPropiedadesUsuario) {
             $usuario = new Usuario();
             $usuario->setear(
-                $parametro['id_usuario'],
-                $parametro['usuario_nombre'],
-                $parametro['usuario_password'],
-                $parametro['usuario_email'],
-                $parametro['usuario_deshabilitado']
+                $parametro['usnombre'],
+                $parametro['uspassword'],
+                $parametro['usmail'],
+                $parametro['usuario_deshabilitado'],
             );
         }
         return $usuario;
@@ -48,13 +53,18 @@ class AbmUsuario
     }
 
     /**
-     * Permite dar de alta un objeto
+     * Permite dar de alta un usuario
      */
     public function alta($parametro)
     {
         $respuesta = false;
         $objUsuario = $this->cargarObjeto($parametro);
-        if ($objUsuario != null and $objUsuario->insertar()) {
+        // if($objUsuario == null){
+        //     print_r($parametro);
+        //     return "Faltan datos para el alta del usuario";
+        // }
+        if ($objUsuario != null && $objUsuario->insertar()) {
+            // $respuesta = "Si se pudo dar de alta el usuario";
             $respuesta = true;
         }
         return $respuesta;

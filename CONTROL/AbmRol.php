@@ -1,5 +1,7 @@
 <?php
 
+include_once '../MODELO/Rol.php';
+
 class AbmRol
 {
     /**
