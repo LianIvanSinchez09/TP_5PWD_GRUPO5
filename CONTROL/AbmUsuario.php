@@ -13,15 +13,16 @@ class AbmUsuario
     {
         $usuario = null;
 
-        $checkPropiedadesUsuario = array_key_exists('usnombre', $parametro) && array_key_exists('uspassword', $parametro) && array_key_exists('usmail', $parametro) && array_key_exists('usuario_deshabilitado', $parametro);
+        $checkPropiedadesUsuario = array_key_exists('usnombre', $parametro) && array_key_exists('uspass', $parametro) && array_key_exists('usmail', $parametro) && array_key_exists('usdeshabilitado', $parametro);
 
         if ($checkPropiedadesUsuario) {
             $usuario = new Usuario();
+            $usuario->setIdUsuario($parametro['idusuario']);
             $usuario->setear(
                 $parametro['usnombre'],
-                $parametro['uspassword'],
+                $parametro['uspass'],
                 $parametro['usmail'],
-                $parametro['usuario_deshabilitado'],
+                $parametro['usdeshabilitado'],
             );
         }
         return $usuario;
@@ -93,7 +94,6 @@ class AbmUsuario
     {
         $respuesta = false;
         if ($this->chequearCamposUsuario($parametro)) {
-            $objUsuario = $this->buscar($parametro);
             $objUsuario = $this->cargarObjeto($parametro);
             if ($objUsuario != null && $objUsuario->modificar()) {
                 $respuesta = true;

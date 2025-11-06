@@ -2,16 +2,57 @@
 
 include_once "../../UTILS/funciones.php";
 
+$titulo = "TP5 - EJ4";
+
 $datos = data_submitted();
 $abmUsuario = new AbmUsuario();
 
-$usuario = ['id_usuario' => $datos['id_usuario']];
-
-$listaUsuario = $abmUsuario->buscar($usuario);
+$listaUsuario = $abmUsuario->buscar($datos);
 $objUsuario = $listaUsuario[0];
 
-$datos['usuario_deshabilitado'] = $objUsuario->getUsDeshabilitado();
+if (isset($_GET['message'])) {
+    print '<script type="text/javascript">alert("' . $_GET['message'] . '");</script>';
+}
+?>
 
-$abmUsuario->modificar($datos);
+<div class="container">
+    <form id="tp5ej4-2" name="tp5ej4-2" method="post" action="accionActualizarLogin.php">
+        <div class="col-md-4">
+            <div class="form-floating mb-3">
+                <?php
+                echo "<input class='form-control' id='idusuario' name='idusuario' type='hidden' value='{$objUsuario->getIdUsuario()}'>";
+                ?>
 
-header('Location: ../../index.php');
+            </div>
+        </div>
+
+        <div class="form-floating col-md-4 mb-3">
+            <?php
+            echo "<input class='form-control' id='usuarioNuevo' name='usnombre' type='text' placeholder='Nuevo usuario' value='{$objUsuario->getUsNombre()}' maxlength='50' required>";
+            ?>
+            <label for="emailNuevo">Ingrese su nuevo usuario</label>
+        </div>
+
+        <div class="form-floating col-md-4 mb-3">
+            <?php
+            echo "<input class='form-control' id='emailNuevo' name='usmail' type='text' placeholder='Nuevo email' value='{$objUsuario->getUsMail()}' maxlength='254' required>";
+            ?>
+            <label for="emailNuevo">Ingrese su nuevo email</label>
+        </div>
+
+
+        <div class="form-floating col-md-4 mb-3">
+            <?php
+            echo "<input class='form-control' id='passwordNueva' name='uspass' type='password' placeholder='Contraseña nueva' value='{$objUsuario->getUsPass()}' maxlength='16' required>";
+            ?>
+            <label for="emailNuevo">Ingrese su nueva contraseña</label>
+        </div>
+
+        <div class="col-md-4">
+            <div class="d-grid">
+                <button class="btn btn-primary" type="submit" value="Editar">Editar</button>
+            </div>
+        </div>
+    </form>
+</div>
+

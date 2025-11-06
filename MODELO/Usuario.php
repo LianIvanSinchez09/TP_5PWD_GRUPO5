@@ -68,7 +68,7 @@ class Usuario {
     public function cargar() {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "SELECT * FROM 'usuario' WHERE idUsuario " . $this->getIdUsuario();
+        $sql = "SELECT * FROM 'usuario' WHERE idusuario " . $this->getIdUsuario();
         if($base->iniciar()) {
             $res = $base->Ejecutar($sql);
             if($res > 0) {
@@ -90,7 +90,9 @@ class Usuario {
     public function modificar() {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "UPDATE FROM 'usuario' WHERE id_usuario = " . $this->getIdUsuario(). "";
+        $sql = "UPDATE usuario SET usnombre = '{$this->getUsNombre()}', uspass = '{$this->getUsPass()}',
+         usmail = '{$this->getUsMail()}', usdeshabilitado = '{$this->getUsDeshabilitado()}' 
+         WHERE idusuario = {$this->getIdUsuario()}";
         if($base->Iniciar()) {
             if($base->Ejecutar($sql)) {
                 return true;
@@ -106,7 +108,7 @@ class Usuario {
     public function eliminar() {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "DELETE FROM usuario WHERE id_usuario = " . $this->getIdUsuario() . "";
+        $sql = "DELETE FROM usuario WHERE idusuario = " . $this->getIdUsuario() . "";
         if ($base->Iniciar()) {
             if($base->Ejecutar($sql)) {
                 return true;
