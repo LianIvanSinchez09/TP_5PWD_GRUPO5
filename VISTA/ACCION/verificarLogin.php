@@ -5,8 +5,7 @@ include_once '../../MODELO/Usuario.php';
 include_once '../../UTILS/funciones.php';
 include_once "../../CONTROL/Session.php";
 
-$datos = data_submitted();
-$abmUsuario = new AbmUsuario();
+$nuevoUsuarioDatos = data_submitted();
 $session = new Session();
 
 // Buscar el usuario en la base de datos

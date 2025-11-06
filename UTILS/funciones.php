@@ -1,15 +1,18 @@
 <?php
 
-include_once '../../CONTROL/AbmUsuario.php';
+include_once __DIR__ . '/../CONTROL/AbmUsuario.php';
+include_once __DIR__ . '/../CONTROL/AbmRol.php';
+include_once __DIR__ . '/../CONTROL/Session.php';
+include_once __DIR__ . '/../CONTROL/tp5_control.php';
 
 function verificarUsuario(Usuario $usuario) {
     $abmUsuario = new AbmUsuario();
-    $listaUsuarios = $abmUsuario->buscar(['usuario_nombre' => $usuario->getUsNombre(), 'usuario_password' => $usuario->getUsPass()]);
+    $listaUsuarios = $abmUsuario->buscar(['usnombre' => $usuario->getUsNombre(), 'uspass' => $usuario->getUsPass()]);
     $cantidad = count($listaUsuarios);
-    $usuarioEncontrado = null;
+    $usuarioEncontrado = false;
 
     if ($cantidad > 0) {
-        $usuarioEncontrado = $listaUsuarios[0];
+        $usuarioEncontrado = true;
     }
     return $usuarioEncontrado;
 }

@@ -33,9 +33,9 @@ class AbmUsuario
     private function cargarObjetoConClave($parametro)
     {
         $objUsuario = null;
-        if (isset($parametro['id_usuario'])) {
+        if (isset($parametro['idusuario'])) {
             $objUsuario = new Usuario();
-            $objUsuario->setear($parametro['id_usuario'], null, null, null, null);
+            $objUsuario->setear($parametro['idusuario'], null, null, null, null);
         }
         return $objUsuario;
     }
@@ -63,7 +63,7 @@ class AbmUsuario
         //     print_r($parametro);
         //     return "Faltan datos para el alta del usuario";
         // }
-        if ($objUsuario != null && $objUsuario->insertar()) {
+        if ($objUsuario != null && $objUsuario->insertar() && !verificarUsuario($objUsuario)) {
             // $respuesta = "Si se pudo dar de alta el usuario";
             $respuesta = true;
         }
@@ -108,27 +108,29 @@ class AbmUsuario
     {
         $where = " true ";
         if ($param != null) {
-            if (isset($param['id_usuario'])) {
-                $where .= " and id_usuario = '" . $param['id_usuario'] . "'";
+            if (isset($param['idusuario'])) {
+                $where .= " and idusuario = '" . $param['idusuario'] . "'";
             }
 
-            if (isset($param['usuario_nombre'])) {
-                $where .= " and usuario_nombre = '" . $param['usuario_nombre'] . "'";
+            if (isset($param['usnombre'])) {
+                $where .= " and usnombre = '" . $param['usnombre'] . "'";
             }
 
-            if (isset($param['usuario_password'])) {
-                $where .= " and usuario_pass ='" . $param['usuario_password'] . "'";
+            if (isset($param['uspass'])) {
+                $where .= " and uspass ='" . $param['uspass'] . "'";
             }
 
-            if (isset($param['usuario_email'])) {
-                $where .= " and usuario_email = '" . $param['usuario_email'] . "'";
+            if (isset($param['usmail'])) {
+                $where .= " and usmail = '" . $param['usmail'] . "'";
             }
 
-            if (isset($param['usuario_deshabilitado'])) {
-                $where .= " and usuario_deshabilitado = '" . $param['usuario_deshabilitado'] . "'";
+            if (isset($param['usdeshabilitado'])) {
+                $where .= " and usdeshabilitado = '" . $param['usdeshabilitado'] . "'";
             }
         }
-        $arreglo = Usuario::listar($where);
+        $usuario = new Usuario();
+        $arreglo = $usuario->listar($where);
+        
         return $arreglo;
     }
 }
