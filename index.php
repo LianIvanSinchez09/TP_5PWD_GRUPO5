@@ -19,7 +19,7 @@
             
                 <div class="form-group">
                     <label for="password">Contraseña:</label>
-                    <input type="password" id="password" name="uspassword" required>
+                    <input type="password" id="password" name="uspass" required>
                 </div>
 
                 <div class="form-group">
@@ -34,12 +34,17 @@
             <form action="./VISTA/ACCION/verificarLogin.php" method="POST">
                 <div class="form-group">
                     <label for="usuario_login">Usuario:</label>
-                    <input type="text" id="usuario_login" name="usuario" required>
+                    <input type="text" id="usuario_login" name="usnombre" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="password_login">Contraseña:</label>
-                    <input type="password" id="password_login" name="password" required>
+                    <input type="password" id="password_login" name="uspass" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email_login">E-Mail:</label>
+                    <input type="password" id="email_login" name="usmail" required>
                 </div>
                 
                 <button type="submit" class="btn-submit btn-login">Ingresar</button>
