@@ -122,7 +122,7 @@ class Usuario {
     public function listar($parametro = "") {
         $arreglo = array();
         $base = new BaseDatos();
-        $sql = "SELECT * FROM usuario";
+        $sql = "SELECT * FROM usuario ";
         if ($parametro != "") {
             $sql .= ' WHERE ' . $parametro;
         }
