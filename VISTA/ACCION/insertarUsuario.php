@@ -16,7 +16,4 @@ if($usuario->alta($nuevoUsuarioDatos)){
     echo "Error al registrar el usuario.";
 }
 
-$mensaje = $usuario->alta($nuevoUsuarioDatos);
-echo $mensaje;
-
 
