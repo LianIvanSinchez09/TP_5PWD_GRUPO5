@@ -1,8 +1,8 @@
 <?php
 
-include_once '../CONTROL/AbmUsuario.php';
-include_once '../MODELO/Usuario.php';
-include_once '../../UTILS/funciones.php';
+require_once __DIR__ . '/../../CONTROL/AbmUsuario.php';
+require_once __DIR__ . '/../../MODELO/Usuario.php';
+require_once __DIR__ . '/../../UTILS/funciones.php';
 
 $nuevoUsuarioDatos = data_submitted();
 $session = new Session();

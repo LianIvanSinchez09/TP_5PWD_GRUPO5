@@ -1,6 +1,6 @@
 <?php
 
-include_once '../MODELO/Rol.php';
+require_once __DIR__ . '/../MODELO/Rol.php';
 
 class AbmRol
 {

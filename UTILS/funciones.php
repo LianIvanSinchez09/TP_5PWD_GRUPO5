@@ -1,6 +1,9 @@
 <?php
 
-include_once '../../CONTROL/AbmUsuario.php';
+include_once __DIR__ . '/../CONTROL/AbmUsuario.php';
+include_once __DIR__ . '/../CONTROL/AbmRol.php';
+include_once __DIR__ . '/../CONTROL/Session.php';
+include_once __DIR__ . '/../CONTROL/tp5_control.php';
 
 function verificarUsuario(Usuario $usuario) {
     $abmUsuario = new AbmUsuario();
