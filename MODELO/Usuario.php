@@ -122,14 +122,14 @@ class Usuario {
     public function listar($parametro = "") {
         $arreglo = array();
         $base = new BaseDatos();
-        $sql = "SELECT * FROM usuario";
+        $sql = "SELECT * FROM usuario ";
         if ($parametro != "") {
             $sql .= 'WHERE ' . $parametro;
         }
         $res = $base->Ejecutar($sql);
         if ($res > 0) {
             while ($row = $base->Registro()) {
-                $objUsuario = new usuario();
+                $objUsuario = new Usuario();
                 $objUsuario->setear(
                     $row['usuario_nombre'],
                     $row['usuario_pass'],
