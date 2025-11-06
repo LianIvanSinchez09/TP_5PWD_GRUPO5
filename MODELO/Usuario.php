@@ -130,6 +130,9 @@ class Usuario {
         if ($res > 0) {
             while ($row = $base->Registro()) {
                 $objUsuario = new Usuario();
+                 if (isset($row['idusuario'])) {
+                $objUsuario->setIdUsuario($row['idusuario']);
+                }
                 $objUsuario->setear(
                     $row['usnombre'],
                     $row['uspass'],

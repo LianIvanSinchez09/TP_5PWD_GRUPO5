@@ -36,7 +36,7 @@ $param = data_submitted();
         }
 
         ?>
-        <a class="btn btn-primary" href="../../paginaSegura.php"><< Volver</a>
+        <a class="btn btn-primary" href="../paginaSegura.php"><< Volver</a>
     </div>
 </main>
 

@@ -35,3 +35,43 @@ function data_submitted()
     }
     return $_AAux;
 }
+
+function mostrarUsuarios($arregloUsuarios)
+{
+    $objUsuario = new Usuario();
+    $tabla = '<div class="table-responsive"><table class="table col-12 text-center mt-5">
+                <thead>
+                    <tr>
+                        <th scope="col">Identificador</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Mail</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>';
+
+    foreach ($arregloUsuarios as $objUsuario) {
+        if($objUsuario->getUsDeshabilitado() == "0000-00-00 00:00:00"){
+            $tabla .= '<tr>' .
+            '<td>' . $objUsuario->getIdUsuario() . '</td>' .
+            '<td>' . $objUsuario->getUsNombre() . '</td>' .
+            '<td>' . $objUsuario->getUsMail() . '</td>' .
+            '<td>
+            <a href="../../VISTA/ACCION/actualizarLogin.php">Editar</a>
+            <a href="../../VISTA/ACCION/eliminarLogin.php">Borrar</a>
+            </td></tr>';
+        }else{
+            $tabla .= '<tr>' .
+            '<td class="table-danger">' . $objUsuario->getIdUsuario() . '</td>' .
+            '<td class="table-danger">' . $objUsuario->getUsNombre() . '</td>' .
+            '<td class="table-danger">' . $objUsuario->getUsMail() . '</td>' .
+            '<td class="table-danger">
+            <a href="abmUsuario.php?id='. $objUsuario->getIdUsuario() .'&accion=activar" class="btn btn-primary">Activar</a>
+            </td></tr>';
+        }
+    }
+    $tabla .= "</tbody></table></div>";
+
+
+    return $tabla;
+}

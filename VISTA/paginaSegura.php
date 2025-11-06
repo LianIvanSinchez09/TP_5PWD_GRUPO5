@@ -7,9 +7,6 @@
         <title>Pagina Segura</title>
     </head>
     <body>
-<<<<<<< HEAD
-        <h1>Inserte frontend de pagina segura</h1>
-=======
         
         <h1>Bienvenido/a</h1>
         <?php
@@ -20,7 +17,6 @@
                 echo "<p>Usuario actual: " . $nombreUsuario . "</p>";
             }
         ?>
->>>>>>> 2db86f789e5be0649266bc777fe0472e0b3955ad
         <form action="./ACCION/cerrarSesion.php" method="POST">
             <button type="submit">Cerrar Sesion</button>
         </form>
