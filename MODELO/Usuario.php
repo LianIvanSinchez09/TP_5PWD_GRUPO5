@@ -68,17 +68,17 @@ class Usuario {
     public function cargar() {
         $resp = false;
         $base = new BaseDatos();
-        $sql = "SELECT * FROM 'usuario' WHERE idUsuario" . $this->getIdUsuario();
+        $sql = "SELECT * FROM 'usuario' WHERE idUsuario " . $this->getIdUsuario();
         if($base->iniciar()) {
             $res = $base->Ejecutar($sql);
             if($res > 0) {
                 $row = $base->Registro();
                 $this->setear(
                     $row['id_usuario'],
-                    $row['usuario_nombre'],
-                    $row['usario_pass'],
-                    $row['usuario_email'],
-                    $row['usuario_deshabilitado']
+                    $row['usnombre'],
+                    $row['uspass'],
+                    $row['usmail'],
+                    $row['usdeshabilitado']
                 );
             }
         } else {
@@ -124,17 +124,17 @@ class Usuario {
         $base = new BaseDatos();
         $sql = "SELECT * FROM usuario";
         if ($parametro != "") {
-            $sql .= 'WHERE ' . $parametro;
+            $sql .= ' WHERE ' . $parametro;
         }
         $res = $base->Ejecutar($sql);
         if ($res > 0) {
             while ($row = $base->Registro()) {
-                $objUsuario = new usuario();
+                $objUsuario = new Usuario();
                 $objUsuario->setear(
-                    $row['usuario_nombre'],
-                    $row['usuario_pass'],
-                    $row['usuario_email'],
-                    $row['usuario_deshabilitado']
+                    $row['usnombre'],
+                    $row['uspass'],
+                    $row['usmail'],
+                    $row['usdeshabilitado']
                 );
                 array_push($arreglo, $objUsuario);
             }

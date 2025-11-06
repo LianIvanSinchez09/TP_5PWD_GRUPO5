@@ -13,7 +13,6 @@ if($usuario->alta($nuevoUsuarioDatos)){
     header("Location: ../paginaSegura.php");
 }else{
     header("Location: ../../index.php");
-    echo "Error al registrar el usuario.";
 }
 
 

@@ -8,10 +8,9 @@ include_once __DIR__ . '/../CONTROL/tp5_control.php';
 function verificarUsuario(Usuario $usuario) {
     $abmUsuario = new AbmUsuario();
     $listaUsuarios = $abmUsuario->buscar(['usnombre' => $usuario->getUsNombre(), 'uspass' => $usuario->getUsPass()]);
-    $cantidad = count($listaUsuarios);
     $usuarioEncontrado = false;
 
-    if ($cantidad > 0) {
+    if ($listaUsuarios) {
         $usuarioEncontrado = true;
     }
     return $usuarioEncontrado;

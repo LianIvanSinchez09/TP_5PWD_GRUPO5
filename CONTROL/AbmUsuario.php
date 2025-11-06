@@ -63,8 +63,9 @@ class AbmUsuario
         //     print_r($parametro);
         //     return "Faltan datos para el alta del usuario";
         // }
-        if ($objUsuario != null && $objUsuario->insertar() && !verificarUsuario($objUsuario)) {
+        if ($objUsuario != null && verificarUsuario($objUsuario) == false) {
             // $respuesta = "Si se pudo dar de alta el usuario";
+            $objUsuario->insertar();
             $respuesta = true;
         }
         return $respuesta;

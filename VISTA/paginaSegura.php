@@ -7,7 +7,7 @@
         <title>Pagina Segura</title>
     </head>
     <body>
-        <h1>Inserte frontend de pagina segura< /h1>
+        <h1>Inserte frontend de pagina segura</h1>
         <form action="./ACCION/cerrarSesion.php" method="POST">
             <button type="submit">Cerrar Sesion</button>
         </form>
